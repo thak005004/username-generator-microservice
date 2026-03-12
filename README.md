@@ -1,0 +1,114 @@
+# Username / Character Name Generator Microservice (MS6)
+
+## Overview
+
+This microservice generates a random username or character name.  
+It can generate names based on different themes such as **nature, space, tech, sports, and food**.
+
+Another program can easily integrate this service by sending an HTTP request and receiving a generated name in JSON format.
+
+---
+
+## Requirements
+
+Python 3 is required.
+
+Install the required libraries:
+
+```bash
+pip install flask requests
+```
+
+---
+
+## Running the Microservice
+
+Start the microservice server with:
+
+```bash
+python main.py
+```
+
+The server will run locally at:
+
+```
+http://127.0.0.1:5002
+```
+
+Leave this running while sending requests to the service.
+
+---
+
+## Endpoint
+
+### Generate a Username
+
+Endpoint:
+
+```
+POST /generate_name
+```
+
+---
+
+## Request Format
+
+The request can optionally include a theme.
+
+Example request body:
+
+```json
+{
+  "theme": "space"
+}
+```
+
+If no theme is provided, the service will generate a username using the default theme.
+
+---
+
+## Example Response
+
+```json
+{
+  "generated_name": "NovaSpark42",
+  "theme_used": "space",
+  "max_length": 15,
+  "supported_themes": ["nature", "space", "tech", "sports", "food"]
+}
+```
+
+---
+
+## Supported Themes
+
+The microservice currently supports the following themes:
+
+- nature
+- space
+- tech
+- sports
+- food
+
+---
+
+## Running the Test Program
+
+A simple test client is included to demonstrate how another application could interact with this microservice.
+
+Run:
+
+```bash
+python testprogram.py
+```
+
+This sends a request to the microservice and prints the generated username in the terminal.
+
+---
+
+## Notes
+
+- Generated usernames are limited to **15 characters**.
+- The service includes a simple profanity filter.
+- If a username is too long, it is automatically trimmed.
+- This microservice can easily be integrated into another application by sending a POST request to `/generate_name`.
